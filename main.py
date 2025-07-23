@@ -58,18 +58,18 @@ async def delete_order_item(order_item_id: uuid.UUID):
 
 
 @app.post("/add_menu_item")
-async def add_menu_item(item: MenuItem):
+async def add_menu_item(item_list: list[MenuItem]):
     conn = await get_db_connection()
 
-    my_uuid = uuid.uuid4()
-
-    await conn.execute(
-        "INSERT INTO menu (menu_id, name, price) VALUES ($1, $2, $3)",
-        my_uuid, item.name, item.price
-    )
+    for item in item_list:
+        my_uuid = uuid.uuid4()
+        await conn.execute(
+            "INSERT INTO menu (menu_id, name, price) VALUES ($1, $2, $3)",
+            my_uuid, item.name, item.price
+        )
 
     await conn.close()
-    return{"menu_id": my_uuid}
+    return{"": "New menu items added successfully!"}
 
 
 @app.post("/delete_menu_item")
