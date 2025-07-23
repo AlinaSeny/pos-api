@@ -44,13 +44,13 @@ async def add_order_items(order: OrderUpdate):
     return {"": "Items added successfully!"}
 
 
-@app.post("/delete_order_item")
-async def delete_order_item(order_item_id: uuid.UUID):
+@app.post("/delete_order_items")
+async def delete_order_items(order_item_ids: list[uuid.UUID]):
     conn = await get_db_connection()
 
     await conn.execute(
-        "DELETE FROM order_items WHERE order_item_id = $1",
-        order_item_id
+        "DELETE FROM order_items WHERE ANY order_item_id = ($1::uuid[])",
+        order_item_ids
     )
 
     await conn.close()
