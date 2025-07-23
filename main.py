@@ -30,7 +30,7 @@ async def create_order():
 
 
 @app.post("/order_item")
-async def add_order_item(order: OrderUpdate):
+async def add_order_items(order: OrderUpdate):
     conn = await get_db_connection()
 
     for item in order.items:
@@ -41,7 +41,7 @@ async def add_order_item(order: OrderUpdate):
         )
 
     await conn.close()
-    return {"order_item_id": my_uuid}
+    return {"": "Items added successfully!"}
 
 
 @app.post("/delete_order_item")
