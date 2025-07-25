@@ -78,7 +78,7 @@ Content-Type: application/json
 {
   "order_id": "a3d8e9b0-5c1f-4e7d-b2a9-6c3f0b8e1d2a",
   "payment_method": "card",
-  "tips": 150.50
+  "tips": 150
 }
 ```
 
