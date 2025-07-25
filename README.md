@@ -8,11 +8,11 @@
 
 ## Технологии
 - Python 3.11+
-- FastAPI (ASGI-сервер)
-- PostgreSQL (хранение данных)
-- AsyncPG (асинхронный доступ к БД)
-- Pydantic (валидация данных)
-- UUID (уникальные идентификаторы)
+- FastAPI
+- PostgreSQL
+- AsyncPG
+- Pydantic
+- UUID
 
 ## Установка
 1. Клонировать репозиторий:
