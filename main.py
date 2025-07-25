@@ -3,7 +3,7 @@ import datetime
 
 from fastapi import FastAPI
 
-from models import OrderUpdate, OrderClose, MenuItem
+from models import OrderUpdate, OrderClose, MenuItem, MenuItemId, Order
 from database import get_db_connection
 
 app = FastAPI()
@@ -73,12 +73,12 @@ async def add_menu_item(item_list: list[MenuItem]):
 
 
 @app.post("/delete_menu_item")
-async def delete_menu_item(menu_id: uuid.UUID):
+async def delete_menu_item(menu_item_id: MenuItemId):
     conn = await get_db_connection()
 
     await conn.execute(
         "UPDATE menu SET is_deleted = TRUE WHERE menu_id = $1",
-        menu_id
+        menu_item_id.menu_id
     )
 
     await conn.close()
@@ -86,21 +86,21 @@ async def delete_menu_item(menu_id: uuid.UUID):
 
 
 @app.post("/cancel_order")
-async def cancel_order(order_id: uuid.UUID):
+async def cancel_order(order: Order):
     conn = await get_db_connection()
 
     await conn.execute(
         "DELETE FROM order_items WHERE order_id = $1",
-        order_id
+        order.order_id
     )
 
     await conn.execute(
         "DELETE FROM orders WHERE order_id = $1",
-        order_id
+        order.order_id
     )
 
     await conn.close()
-    return{"": f"Cancel order {order_id} successfully!"}
+    return{"": f"Cancel order {order.order_id} successfully!"}
 
 
 @app.post("/close_order")
