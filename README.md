@@ -96,4 +96,8 @@ pytest unit_test.py -v
 ## База данных
 Схема БД:
 
+![db_diagram.png](db_diagram.png)
+
+## Документирование API в Swagger UI (локальный хост)
+
 ![img.png](img.png)
