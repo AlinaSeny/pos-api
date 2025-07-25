@@ -1,5 +1,6 @@
-DateTime~=5.5
+pytest~=8.4.1
 fastapi~=0.116.1
+DateTime~=5.5
 pydantic~=2.11.7
 asyncpg~=0.30.0
 httpx~=0.28.1
