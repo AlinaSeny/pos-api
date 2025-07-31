@@ -1,5 +1,3 @@
-CREATE DATABASE pos_db;
-
 CREATE TYPE order_status AS ENUM ('closed', 'opened');
 
 CREATE TYPE payment_type AS ENUM ('cash', 'card');
