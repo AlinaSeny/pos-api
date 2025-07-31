@@ -5,5 +5,5 @@ async def get_db_connection():
         user="postgres",
         password="admin",
         database="pos_db",
-        host="localhost"
+        host="db"
     )
