@@ -10,11 +10,14 @@
 - Python 3.11+
 - FastAPI
 - PostgreSQL
+- Docker
 - AsyncPG
 - Pydantic
 - UUID
 
 ## Установка
+
+### Без Docker
 1. Клонировать репозиторий:
    ```sh
    git clone git@github.com:AlinaSeny/pos-api.git
@@ -28,8 +31,31 @@
    
 4. Запустить сервер:
     ```sh
-    uvicorn app.main:app --reload
+    uvicorn main:app --reload
 
+
+### С Docker (рекомендуется)
+1. Клонировать репозиторий:
+   ```sh
+   git clone git@github.com:AlinaSeny/pos-api.git
+   cd pos-api
+
+2. Собрать и запустить контейнеры:
+   ```sh
+   docker compose up -d --build
+   
+3. Приложение будет доступно по адресу:
+   http://0.0.0.0:8000/docs
+
+## Управление Docker-контейнерами
+
+| Команда | Описание |
+|---------|----------|
+| `docker-compose up -d` | Запуск сервисов в фоне |
+| `docker-compose down` | Остановка сервисов |
+| `docker-compose logs -f` | Просмотр логов |
+| `docker-compose exec backend bash` | Вход в контейнер приложения |
+| `docker-compose exec db psql -U postgres -d pos_db` | Доступ к БД |
 
 ## API Endpoints
 
@@ -84,9 +110,17 @@ Content-Type: application/json
 
 ## Тестирование
 Запуск unit-тестов:
+
+### Без  Docker
 ```sh
 pytest unit_test.py -v
 ```
+
+### С Docker
+```sh
+docker-compose exec backend pytest unit_test.py -v
+```
+
 Тесты покрывают:
 - Создание заказа
 - Добавление/удаление позиций
