@@ -20,7 +20,7 @@
    git clone git@github.com:AlinaSeny/pos-api.git
    cd pos-api
    
-2. Настроить БД (запустите db_creation_script.sql в PostgreSQL).
+2. Настроить БД (запустите db_init.sql в PostgreSQL).
 
 3. Установить зависимости:
     ```sh
@@ -28,7 +28,7 @@
    
 4. Запустить сервер:
     ```sh
-    uvicorn main:app --reload
+    uvicorn app.main:app --reload
 
 
 ## API Endpoints
